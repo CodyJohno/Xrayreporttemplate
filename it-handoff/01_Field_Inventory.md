@@ -42,7 +42,7 @@ Status: **DRAFT — in progress**
 | Reject Rate (per paddock) | "2.4%" | Percentage, 1 decimal | Rejected bales ÷ scanned bales for that ARGT | Bold, 10pt, colour per 3-tier threshold rule (see Business Rules) |
 | Exported To | "Korea" | Text, country name | **Source system not yet confirmed — PULSE or Power BI, IT to investigate (see Business Rules)** | Regular, 10pt, Black |
 | Status | "Very clean" / "Solid" / "Could improve" | Text, fixed 3-word vocabulary | Same 3-tier band as reject rate — see Business Rules | Regular, 10pt, Black |
-| "Your three scanned paddocks did not all behave the same way." | Fixed intro line above table | Text | **To confirm: always this exact sentence regardless of whether paddocks vary much, or does it adapt?** | Regular, 10pt, Black |
+| "Your three scanned paddocks did not all behave the same way." | Templated intro line above table, 3 variants | Text | Paddock band consistency (all-green / all-red / mixed) — see Business Rules. **Exact wording for all-green and all-red variants not yet drafted.** | Regular, 10pt, Black |
 
 ## Section 4 — Reject Rate table, "What This Means for You", Season-on-Season (page 1)
 
@@ -55,4 +55,13 @@ Status: **DRAFT — in progress**
 | Season-on-season: current season rate | "4.9%" | Percentage, 1 decimal | Current season overall reject rate (same as glance row figure) | Bold, 18pt, colour = better of the two (green in Yarranabee's case) |
 | Season-on-season narrative | "Your reject rate has dropped from 38.2% to 4.9%, a 33.3 percentage point reduction year on year!" | Text, computed % point difference + directional wording | Computed from the two rates — **directional wording (dropped/increased, tone) needs Content Standards guidance for the "went backwards" case** | Regular, 10pt, Black |
 | Season-on-season section (whole block) | Present for Yarranabee | Conditional — **omitted entirely if grower has no prior-season data** | See Business Rules | — |
+
+## Section 6 — "Supporting Data" (page 2)
+
+| Field | Example value | Shape | Source | Formatting |
+|---|---|---|---|---|
+| Power BI screenshot | Reject Summary dashboard, filtered to grower | **Currently a manual screenshot — see Business Rules for rebuild recommendation** | Power BI "Raw Material Rejects → Reject Summary" report, filtered by Grower/Plant/Season | Centered, ~540x251px in shipped doc |
+| Screenshot caption | "Power BI, Raw Material Rejects, Reject Summary. Yarranabee Holdings Pty Ltd, data updated 17/06/26." | Text, template with grower name + data-refresh date | Grower name = same field as title block; date = **Power BI dataset last-refresh timestamp, distinct from the page-1 report date** | Italic, 8pt, Dark Grey, centered |
+| Reconciliation table | Total bales scanned / Clean bales / Contaminated or rejected / Exportable product % / Overall reject rate % / Paddocks scanned | 6 rows, figures restated from page 1 (with 2 new: Clean bales count, Contaminated/rejected count) | Same Power BI dataset as page 1 figures | Standard data table styling |
+| "Every figure on the first page is drawn from this dataset..." | Fixed boilerplate | Text | Hardcoded | Regular, 10pt, Black |
 
