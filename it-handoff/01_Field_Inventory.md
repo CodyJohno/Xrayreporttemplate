@@ -42,7 +42,7 @@ Status: **DRAFT — in progress**
 | Reject Rate (per paddock) | "2.4%" | Percentage, 1 decimal | Rejected bales ÷ scanned bales for that ARGT | Bold, 10pt, colour per 3-tier threshold rule (see Business Rules) |
 | Exported To | "Korea" | Text, country name | **Source system not yet confirmed — PULSE or Power BI, IT to investigate (see Business Rules)** | Regular, 10pt, Black |
 | Status | "Very clean" / "Solid" / "Could improve" | Text, fixed 3-word vocabulary | Same 3-tier band as reject rate — see Business Rules | Regular, 10pt, Black |
-| "Your three scanned paddocks did not all behave the same way." | Templated intro line above table, 3 variants | Text | Paddock band consistency (all-green / all-red / mixed) — see Business Rules. **Exact wording for all-green and all-red variants not yet drafted.** | Regular, 10pt, Black |
+| "Your three scanned paddocks did not all behave the same way." | Templated intro line above table, 3 variants | Text | Paddock band consistency (all-green / all-red / mixed) — see Business Rules. **All-green and all-red wording now drafted, pending Cody's final approval.** | Regular, 10pt, Black |
 
 ## Section 4 — Reject Rate table, "What This Means for You", Season-on-Season (page 1)
 
@@ -76,7 +76,7 @@ Status: **DRAFT — in progress**
 | Status tag | "REJECTED" / "CLEAN" | Fixed 2-word vocabulary | Derived from bale's flag status | Bold, 9pt, White, fill = Red (`#C0392B`) for rejected / Green (`#12AA66`) for clean |
 | Capture-mode caption | "X-ray plant capture, supervisor scan mode" | Fixed text | Hardcoded | Italic, 9pt, Navy, on pale-green fill |
 | Bale scan image | X-ray capture | Image, aspect ratio varies (~390-420 x 170-236px in shipped doc) | X-ray scanning app, per bale ID | Centered |
-| Bale caption | "This bale was rejected for stone contamination..." | Text, per-category template with minor tweaks per image | Category → template caption lookup — see Business Rules for the 3 confirmed templates (Stone/Clean/Wire); Dirt and Others not yet drafted | Regular, 10pt, Black |
+| Bale caption | "This bale was rejected for stone contamination..." | Text, per-category template with minor tweaks per image | Category → template caption lookup — see Business Rules. Stone/Clean/Wire confirmed from shipped report; Dirt and Others now drafted, pending Cody's approval (Dirt also needs a real scan image to verify marker colour) | Regular, 10pt, Black |
 | AI-training disclaimer | "Note: a few stones on the rejected stone bale are not boxed..." | Fixed text | **Standing rule: show automatically whenever Stone is a featured example** — see Business Rules | Italic, 8pt, Dark Grey, centered |
 | Sign-off contact line | "please get in touch with the Lachlan or myself" | Text, dynamic contact name(s) | Grower's account manager/contact — **source system to confirm with IT (likely PULSE)** | Italic, 9pt, Dark Grey, centered |
 

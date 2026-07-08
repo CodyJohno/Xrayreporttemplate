@@ -25,20 +25,30 @@ The shipped docx is not identical to `build_snapshot.js`. Differences found and 
 
 Treat the docx as authoritative wherever the two disagree.
 
-## Consolidated open items (need Cody's sign-off before/during the Power BI build)
+## Consolidated open items (need Cody's sign-off or IT investigation)
 
-These are called out inline in the relevant document, collected here for convenience:
+### Needs IT to locate the source system/field (Cody doesn't have this — genuine investigation work)
 
 1. **Grower name & Location source fields** — likely PULSE, exact table/field not yet confirmed. (Field Inventory §1)
 2. **Report date field** — confirmed to come from the Power BI dataset, but exact field/logic not pinned down (it's not simply "today," since it differs from the page-2 data-refresh date). (Field Inventory §1)
 3. **"Exported To" source system** — PULSE or Power BI, IT to investigate; also confirm the one-destination-per-paddock-per-season assumption holds beyond Yarranabee. (Business Rules — Exported To)
-4. **Reject-rate colour threshold boundaries** — confirm exact behaviour at exactly 3% and exactly 10% (inclusive/exclusive). (Business Rules — Reject-rate colour thresholds)
-5. **Paddock-intro-line wording** for the "all clean" and "all poor" variants — not yet drafted, only the "mixed" version exists (from Yarranabee). (Business Rules — Paddock table intro line)
-6. **Season-on-season "got worse" sentence** — exact copy not yet drafted, only the tone direction is agreed (factual, no exclamation mark). (Content Standards)
-7. **"Others" category** — no standard cause-explanation sentence or bale-caption template exists yet; needed if "Others" ever ranks as a top contributor or gets featured as a bale example. (Business Rules — flags narrative bank; bale caption bank)
-8. **Dirt bale-caption template** — not yet drafted (only Stone/Clean/Wire captions exist from the shipped report). (Business Rules — Bale example captions)
-9. **Sign-off contact source field** — grower → account manager/contact mapping, likely PULSE, not yet located. (Business Rules — Sign-off contact name)
-10. **Power BI screenshot → live embed** — page 2's dashboard image is currently a manual screenshot; agreed this should become a live embedded Power BI visual in the rebuild rather than a static image. This is a meaningful scope item, not just a copy/paste. (Business Rules — Power BI screenshot)
+4. **Sign-off contact source field** — grower → account manager/contact mapping, likely PULSE, not yet located. (Business Rules — Sign-off contact name)
+
+### Copy drafted, pending Cody's final approval (ready for a quick review pass, not a from-scratch writing task)
+
+5. **Paddock-intro-line wording** for the "all clean" and "all poor" variants — drafted, needs Cody's sign-off. (Business Rules — Paddock table intro line)
+6. **Season-on-season "got worse" sentence** — drafted, needs Cody's sign-off. (Content Standards)
+7. **"Others" category** cause-explanation sentence and bale-caption template — drafted (with a bracketed slot for the specific item found, since "Others" isn't one fixed physical cause). Needs Cody's sign-off, only relevant once "Others" ever ranks as a top contributor or gets featured as a bale example. (Business Rules — flags narrative bank; bale caption bank)
+8. **Dirt bale-caption template** — drafted, needs Cody's sign-off **and** a real Dirt-flagged scan image to confirm the marker colour described in the caption (no shipped example to check against). (Business Rules — Bale example captions)
+
+### Scope item, not a sign-off item
+
+9. **Power BI screenshot → live embed** — page 2's dashboard image is currently a manual screenshot; agreed this should become a live embedded Power BI visual in the rebuild rather than a static image. This is a meaningful build-scope item for IT, not just a copy/paste. (Business Rules — Power BI screenshot)
+
+### Resolved this session (no longer open)
+
+- Reject-rate colour threshold boundaries: exactly 3.0% = green, exactly 10.0% = amber. (Business Rules — Reject-rate colour thresholds)
+- Bale image sizing: keep native aspect ratio, fixed width only. (Design Specifications)
 
 ## Resolved decisions from this session (for reference — don't re-litigate)
 

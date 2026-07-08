@@ -29,13 +29,13 @@ Applies everywhere a reject-rate percentage is shown a colour (glance-row tile, 
 
 | Band | Threshold | Colour | Hex |
 |---|---|---|---|
-| Green | < 3% | Green | `#12AA66` (brand primary) |
-| Amber | 3% – 10% | Amber | `#F39C12` (new — not in brand guide, agreed with Cody 2026-07-08 as the standard amber for this band) |
+| Green | ≤ 3% | Green | `#12AA66` (brand primary) |
+| Amber | > 3% and ≤ 10% | Amber | `#F39C12` (new — not in brand guide, agreed with Cody 2026-07-08 as the standard amber for this band) |
 | Red | > 10% | Red | `#C0392B` (already in use, not in brand guide) |
 
 **Important — discrepancy in the shipped Yarranabee report:** this 3-tier rule is the *intended* standard, but the Yarranabee report as actually sent only used 2 colours (green under 10%, red at/above 10%) — the amber band was never implemented. Yarranabee's overall rate (4.9%) and Pip's paddock (4.0%) both fall in the amber band but were rendered green in the shipped docx. **Confirmed with Cody (2026-07-08): IT should build the correct 3-tier rule going forward — do not replicate the 2-tier gap from the Yarranabee report.**
 
-Open question for Cody: exact boundary behaviour at 3% and 10% (e.g. is exactly 3.0% green or amber; is exactly 10.0% amber or red) — assume inclusive-lower-bound (≥3% and <10% = amber, ≥10% = red, <3% = green) until confirmed otherwise.
+Boundary behaviour confirmed by Cody (2026-07-08): exactly 3.0% counts as **green**, exactly 10.0% counts as **amber**. So bands are green ≤3%, amber >3% and ≤10%, red >10%.
 
 ## Rule: Paddock table "Status" column
 
@@ -43,8 +43,8 @@ Same 3 bands as the reject-rate colour rule, mapped to fixed status words — co
 
 | Band | Reject rate | Status text |
 |---|---|---|
-| Green | < 3% | "Very clean" |
-| Amber | 3% – 10% | "Solid" |
+| Green | ≤ 3% | "Very clean" |
+| Amber | > 3% and ≤ 10% | "Solid" |
 | Red | > 10% | "Could improve" |
 
 Note: the Yarranabee report's Rosies row read "Could improve" for 13.2% — consistent. Tom's (2.4%, "Very clean") and Pip's (4.0%, "Solid") are also consistent with this rule even though Pip's reject-rate *colour* was rendered green instead of amber (the colour gap noted above) — the status *word* "Solid" was correct even where the colour wasn't. So the word-mapping logic was applied correctly in the shipped report; only the colour-fill logic had the gap.
@@ -59,7 +59,13 @@ The sentence introducing the paddock comparison table (Yarranabee's version: "Yo
 | All paddocks in the red band | "Needs improvement" tone — flags a consistent problem across the whole property, not just one paddock |
 | Mixed bands (some green/amber/red) | Neutral "did not all behave the same way" framing — as shipped in Yarranabee's report |
 
-Confirmed by Cody (2026-07-08): this 3-way split is correct. **Exact wording for the "all clean" and "all poor" variants still needs to be drafted/approved by Cody** — flag for content sign-off before IT templates it, same as the season-on-season "got worse" wording above.
+Confirmed by Cody (2026-07-08): this 3-way split is correct. Draft wording for the two missing variants (**pending Cody's final approval**):
+
+| Variant | Draft wording |
+|---|---|
+| All-green | "Every one of your scanned paddocks came through clean this season — a strong, consistent result across the board." |
+| All-red | "All of your scanned paddocks are showing higher reject rates than we'd like to see this season, so there's an opportunity to lift results across the board — we've broken it down by paddock below." |
+| Mixed (shipped) | "Your three scanned paddocks did not all behave the same way." |
 
 ## Rule: Power BI screenshot (page 2) — rebuild as live visual, not static image
 
@@ -91,7 +97,8 @@ Follows a **template per category**, with minor tweaks to match specifics of the
 | Stone (rejected) | "This bale was rejected for stone contamination. The dark blue marks scattered through the bale are stones picked up with the hay during baling. The green boxes show what our X-ray flagged automatically." |
 | Clean | "This is what a clean bale looks like through the X-ray. No contaminants flagged, no manual marks from the operator. The bale goes straight through to the press and into export packaging. The colour variation across the image is just density variation, not contamination. This is what we are aiming for on every bale." |
 | Wire (rejected) | "This bale was rejected for wire in the top half, marked in the image. Wire is one of the most serious contaminants we catch because of the injury risk it carries for livestock, so any detection is an automatic reject regardless of how clean the rest of the bale looks." |
-| Dirt / Others (rejected) | **Not yet drafted — no shipped example to draw from. Flag for Cody to write a template caption if/when Dirt or an "Others" item is featured as an example.** |
+| Dirt (rejected) | **Draft (pending Cody's approval, and pending a real Dirt-flagged scan image to confirm the marker colour/description):** "This bale was rejected for dirt contamination. The [colour] marks through the bale show soil or dirt picked up with the hay during baling. The green boxes show what our X-ray flagged automatically." |
+| Others (rejected) | **Draft (pending Cody's approval):** "This bale was rejected for [specific item found]. Items like this are uncommon, and flagging them individually helps us keep unusual contamination out of your shipments." |
 
 **Implication for IT:** build as a category → template caption lookup (like the flags-table cause bank), editable per report to match the "minor tweaks for the image" pattern — not a fully static hardcoded string, but not free-text-from-scratch either.
 
@@ -121,7 +128,7 @@ The paragraph following the "What Our X-Ray Found" table (e.g. "Stone and dirt a
 | Dirt | Shares the Stone explanation (same ground/soil-pickup cause) — used together when Stone and Dirt are both top contributors, as in Yarranabee's report. |
 | Moisture | "Ensure correct humidity levels are monitored during baling and hay is properly cured." |
 | Wire | "Please drive removed fence lines and please notify us if you remove or repair big area of fencing so Johnson's can also inspect." |
-| Others | **Open item — no standard sentence defined yet. Confirm with Cody if "Others" becomes a top contributor.** |
+| Others | **Draft (pending Cody's approval):** "The 'Others' category can include a range of one-off items — [specific item found, e.g. a foreign object or piece of equipment]. These are usually isolated incidents rather than a pattern, and we flag them individually so you have full visibility." — this one will always need the bracketed detail filled in manually per instance, since "Others" isn't a single physical cause the way Stone/Dirt/Moisture/Wire are. |
 
 This is manually-authored per report (like the Notes column) — not something Power BI can fully automate. IT should build this as a templated text block with a category → cause-sentence lookup, surfaced for the report preparer to select/edit before send, not a locked auto-generated paragraph.
 
