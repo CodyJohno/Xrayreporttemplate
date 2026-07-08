@@ -65,3 +65,18 @@ Status: **DRAFT — in progress**
 | Reconciliation table | Total bales scanned / Clean bales / Contaminated or rejected / Exportable product % / Overall reject rate % / Paddocks scanned | 6 rows, figures restated from page 1 (with 2 new: Clean bales count, Contaminated/rejected count) | Same Power BI dataset as page 1 figures | Standard data table styling |
 | "Every figure on the first page is drawn from this dataset..." | Fixed boilerplate | Text | Hardcoded | Regular, 10pt, Black |
 
+## Section 7 — Bale Examples (page 3)
+
+| Field | Example value | Shape | Source | Formatting |
+|---|---|---|---|---|
+| Featured categories (which 1-2 reject types) | Stone, Wire | **Curated selection, not fully automatable — see Business Rules** | Report preparer judgement, guided by Stone/Dirt-almost-always + Wire-if-present + notable-Others rule | — |
+| Example header label | "Rejected: Stone Contamination" | Text, "[Rejected: / Clean:] [Category] Contamination" | Derived from chosen category + reject/clean status | Bold, 11pt, White, on navy bar |
+| Paddock (ARGT) | "Rosies (W20250027)" | Text | Same paddock fields as Section 3 | Regular, 9pt, White |
+| Bale number | "Bale 110" | Text, "Bale " + integer | Bale ID from scan record — **once category is chosen, bale ID selection can be automated (any representative bale from that category), per Cody 2026-07-08** | Regular, 9pt, White |
+| Status tag | "REJECTED" / "CLEAN" | Fixed 2-word vocabulary | Derived from bale's flag status | Bold, 9pt, White, fill = Red (`#C0392B`) for rejected / Green (`#12AA66`) for clean |
+| Capture-mode caption | "X-ray plant capture, supervisor scan mode" | Fixed text | Hardcoded | Italic, 9pt, Navy, on pale-green fill |
+| Bale scan image | X-ray capture | Image, aspect ratio varies (~390-420 x 170-236px in shipped doc) | X-ray scanning app, per bale ID | Centered |
+| Bale caption | "This bale was rejected for stone contamination..." | Text, per-category template with minor tweaks per image | Category → template caption lookup — see Business Rules for the 3 confirmed templates (Stone/Clean/Wire); Dirt and Others not yet drafted | Regular, 10pt, Black |
+| AI-training disclaimer | "Note: a few stones on the rejected stone bale are not boxed..." | Fixed text | **Standing rule: show automatically whenever Stone is a featured example** — see Business Rules | Italic, 8pt, Dark Grey, centered |
+| Sign-off contact line | "please get in touch with the Lachlan or myself" | Text, dynamic contact name(s) | Grower's account manager/contact — **source system to confirm with IT (likely PULSE)** | Italic, 9pt, Dark Grey, centered |
+

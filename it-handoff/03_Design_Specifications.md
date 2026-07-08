@@ -60,7 +60,7 @@ Reference: `reference/Yarranabee_Reject_Report.docx` (shipped output), `referenc
 | Power BI screenshot | 540 x 251 px | Centered, page 2 |
 | Bale scan photos | ~390-420 x 170-236 px (varies per photo aspect ratio) | Centered, one per bale example block on page 3 |
 
-**Open item:** confirm with Cody whether bale photo dimensions should be a fixed box (crop/pad to fit) or preserve native aspect ratio (current approach — this is why the three bale images differ slightly in height despite similar width).
+**Confirmed with Cody (2026-07-08):** keep native aspect ratio. Fix the image width (~420px), let height vary naturally per image — do not crop/pad/stretch to force a uniform box, as that would distort the X-ray scan.
 
 ## Table & Banner Styling
 

@@ -82,6 +82,23 @@ These are two different dates and should **not** be conflated:
 - This means category *selection* (which contamination types to feature) is a judgement call, similar in spirit to the Notes column — **not fully automatable**. However, once a category is chosen, the specific bale ID/image within that category **can be automated** (any representative bale from that category works — no manual quality-review step needed for image selection itself, per Cody 2026-07-08).
 - **Implication for IT:** build category selection as a manual/reviewable step (report preparer picks which 1-2 reject categories to feature, guided by the Stone/Dirt-almost-always + Wire-if-present + notable-Others rule), then auto-pull a representative bale image + stats for whichever category is chosen.
 
+## Rule: Bale example captions (page 3, per-image descriptive text)
+
+Follows a **template per category**, with minor tweaks to match specifics of the actual image shown (confirmed by Cody 2026-07-08). Shipped examples to use as the starting template bank:
+
+| Category / status | Template caption |
+|---|---|
+| Stone (rejected) | "This bale was rejected for stone contamination. The dark blue marks scattered through the bale are stones picked up with the hay during baling. The green boxes show what our X-ray flagged automatically." |
+| Clean | "This is what a clean bale looks like through the X-ray. No contaminants flagged, no manual marks from the operator. The bale goes straight through to the press and into export packaging. The colour variation across the image is just density variation, not contamination. This is what we are aiming for on every bale." |
+| Wire (rejected) | "This bale was rejected for wire in the top half, marked in the image. Wire is one of the most serious contaminants we catch because of the injury risk it carries for livestock, so any detection is an automatic reject regardless of how clean the rest of the bale looks." |
+| Dirt / Others (rejected) | **Not yet drafted — no shipped example to draw from. Flag for Cody to write a template caption if/when Dirt or an "Others" item is featured as an example.** |
+
+**Implication for IT:** build as a category → template caption lookup (like the flags-table cause bank), editable per report to match the "minor tweaks for the image" pattern — not a fully static hardcoded string, but not free-text-from-scratch either.
+
+## Rule: AI-training disclaimer (page 3, "a few stones... not boxed" note)
+
+**Standing disclaimer — show automatically whenever Stone is one of the featured bale examples**, regardless of whether the specific image shown happens to have visibly unboxed stones. Cody confirmed (2026-07-08) this is whichever is easiest to implement, and a standing rule tied to the Stone category is simpler than requiring manual inspection of each image — no per-image judgement call needed. If the AI stone-detection tool referenced here is ever fully trained/retired, this note will need to be retired too (not addressed in this session — flag as a future maintenance item).
+
 ## Rule: Sign-off contact name (page 3, closing note)
 
 "If you would like to talk through any of these examples, please get in touch with [contact name(s)]" — the contact name is **dynamic**, based on whoever manages that grower's account relationship (Yarranabee's shipped report named "the Lachlan," i.e. that grower's account contact). Confirmed by Cody (2026-07-08) this should be dynamic, not the generic "the Johnson's WA team" fallback in the build script. **Open item for IT:** locate the source field for grower → account manager/contact mapping (likely PULSE).
