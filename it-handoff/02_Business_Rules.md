@@ -37,6 +37,22 @@ Applies everywhere a reject-rate percentage is shown a colour (glance-row tile, 
 
 Open question for Cody: exact boundary behaviour at 3% and 10% (e.g. is exactly 3.0% green or amber; is exactly 10.0% amber or red) — assume inclusive-lower-bound (≥3% and <10% = amber, ≥10% = red, <3% = green) until confirmed otherwise.
 
+## Rule: Paddock table "Status" column
+
+Same 3 bands as the reject-rate colour rule, mapped to fixed status words — confirmed by Cody (2026-07-08):
+
+| Band | Reject rate | Status text |
+|---|---|---|
+| Green | < 3% | "Very clean" |
+| Amber | 3% – 10% | "Solid" |
+| Red | > 10% | "Could improve" |
+
+Note: the Yarranabee report's Rosies row read "Could improve" for 13.2% — consistent. Tom's (2.4%, "Very clean") and Pip's (4.0%, "Solid") are also consistent with this rule even though Pip's reject-rate *colour* was rendered green instead of amber (the colour gap noted above) — the status *word* "Solid" was correct even where the colour wasn't. So the word-mapping logic was applied correctly in the shipped report; only the colour-fill logic had the gap.
+
+## Rule: "Exported To" column (paddock table)
+
+Source system not yet confirmed — likely PULSE or the Power BI dataset, both of which may hold shipment/destination data at the ARGT level. **Open item for IT to investigate**: locate which system/table authoritatively holds export destination per ARGT per season, and confirm the one-destination-per-paddock-per-season assumption holds across the full grower base (not just Yarranabee).
+
 ## Rule: Flags-table narrative paragraph (template + per-category cause bank)
 
 The paragraph following the "What Our X-Ray Found" table (e.g. "Stone and dirt are the largest factors this season...") follows a repeatable template, populated per-report based on whichever category(ies) actually rank at the top by flag count:
@@ -54,4 +70,24 @@ The paragraph following the "What Our X-Ray Found" table (e.g. "Stone and dirt a
 | Others | **Open item — no standard sentence defined yet. Confirm with Cody if "Others" becomes a top contributor.** |
 
 This is manually-authored per report (like the Notes column) — not something Power BI can fully automate. IT should build this as a templated text block with a category → cause-sentence lookup, surfaced for the report preparer to select/edit before send, not a locked auto-generated paragraph.
+
+**This same per-category cause-sentence bank is reused in the "What This Means for You" paragraph's advice sentence** (page 1) — see that rule below. One lookup table serves both locations.
+
+## Rule: Company reject-rate target
+
+Fixed constant: **"3.0% or under"**. Same for every grower, product, and season. Confirmed by Cody (2026-07-08). Only changes if the company itself changes its target — should be a single configurable value in the Power BI model, not hardcoded per-report.
+
+## Rule: "What This Means for You" paragraph structure
+
+Three parts:
+1. **Fixed opening** — always the same, not grower-dependent: "Because we run a slicer plant rather than a decontamination line, what we record is what ships, so every reject is one we have stopped before it reaches your customer."
+2. **Adaptive advice sentence** — built from the *same* category → cause-sentence bank as the flags-table paragraph (see above), reworded slightly toward action/advice rather than pure cause explanation, keyed to whichever category ranks #1 this season. E.g. Stone/Dirt top → cutting/baler-height/ground-conditions advice; Moisture top → humidity/curing advice; Wire top → fencing-inspection advice.
+3. **Fixed closing** — always the same: "We are happy to talk it through if it helps."
+
+## Rule: Season-on-Season Improvement section (page 1, after the first banner)
+
+- **Appears only if the grower has at least one prior season of scan data.** If this is the grower's first reported season, the section is **omitted entirely** — do not show a blank/zero comparison.
+- **Colour always reflects good vs. bad, not old vs. new.** The lower (better) reject rate is shown in green; the higher (worse) reject rate is shown in red — regardless of which season is more recent. So for a grower whose rate got worse year-on-year, the colours flip relative to the Yarranabee example (old season = green, new/current season = red).
+- Confirmed by Cody (2026-07-08).
+- Open item: exact wording of the surrounding sentence ("Your reject rate has dropped from X% to Y%, a Z percentage point reduction year on year!") presumably also needs to flip tone/verb when the grower went backwards (e.g. "increased" instead of "dropped", no exclamation mark) — **see Content Standards for tone guidance; exact phrasing not yet confirmed with Cody.**
 
