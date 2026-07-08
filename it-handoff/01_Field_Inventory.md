@@ -19,3 +19,16 @@ Status: **DRAFT — in progress**
 
 **Business rule note:** Subtitle fields are joined with `   |   ` (3 spaces either side of pipe).
 
+## Section 2 — "At a Glance" stat row + "What Our X-Ray Found" table (page 1)
+
+| Field | Example value | Shape | Source | Formatting |
+|---|---|---|---|---|
+| Bales scanned | "1,911" | Integer, thousands-separator | Count of scanned bales this season | Bold, 18pt, Green |
+| Paddocks scanned note | "(3 of 9 paddocks)" | Text, "X of Y paddocks" | See Business Rules: Paddock count tile | Bold, 8pt, Navy |
+| Exportable product % | "95.1%" | Percentage, 1 decimal | Clean bales ÷ total scanned bales | Bold, 18pt, Green |
+| Overall reject rate % | "4.9%" | Percentage, 1 decimal | Rejected/contaminated bales ÷ total scanned bales | Bold, 18pt, Green — **see Business Rules for colour-threshold logic (still to be confirmed)** |
+| Flags table rows | Stone / Dirt / Moisture / Wire / Others | Category name, fixed list (5 categories) | Power BI flag-by-reason breakdown | Category name bold on top-2 rows only (Stone, Dirt bold in shipped doc) |
+| Flags Recorded (per category) | "672" | Integer | Count of flags per category this season | Regular, 10pt, Black |
+| Notes (per category) | "Main contributor" | Free text, editable | **Manual field — see Business Rules.** Defaults: rank #1 = "Main contributor", rank #2 = "Second largest contributor", Wire = "Usually old fencing wire" (standing default), others blank | Regular, 10pt, Black |
+| "Stone and dirt are the largest factors..." paragraph | Fixed-ish narrative | Text | **To confirm: is this paragraph boilerplate, or does it adapt to which categories actually rank #1/#2?** | Regular, 10pt, Black |
+
