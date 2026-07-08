@@ -23,3 +23,35 @@ Status: **DRAFT — in progress**
 - **Historical caution:** the Yarranabee report's Moisture row showed "Do not be concerned" — this was **situational commentary**, not a permanent rule. It referred to a moisture-flagging issue on Johnson's factory/scanning side (not the grower's fault) that has since been resolved. **Do not hardcode "Do not be concerned" as a default for Moisture.** Leave Moisture blank by default like other non-ranked categories; Cody (or whoever prepares the report) adds situational notes like this manually when a similar issue is active.
 - **Implication for IT:** the RDL/Power BI build needs some kind of pre-send review/annotation step (e.g. a text field the report preparer fills in per grower/season before the report is finalised and sent), not a fully hands-off auto-generate-and-send pipeline for this column.
 
+## Rule: Reject-rate colour thresholds
+
+Applies everywhere a reject-rate percentage is shown a colour (glance-row tile, paddock table "Reject Rate" column, "Your Reject Rate" table).
+
+| Band | Threshold | Colour | Hex |
+|---|---|---|---|
+| Green | < 3% | Green | `#12AA66` (brand primary) |
+| Amber | 3% – 10% | Amber | `#F39C12` (new — not in brand guide, agreed with Cody 2026-07-08 as the standard amber for this band) |
+| Red | > 10% | Red | `#C0392B` (already in use, not in brand guide) |
+
+**Important — discrepancy in the shipped Yarranabee report:** this 3-tier rule is the *intended* standard, but the Yarranabee report as actually sent only used 2 colours (green under 10%, red at/above 10%) — the amber band was never implemented. Yarranabee's overall rate (4.9%) and Pip's paddock (4.0%) both fall in the amber band but were rendered green in the shipped docx. **Confirmed with Cody (2026-07-08): IT should build the correct 3-tier rule going forward — do not replicate the 2-tier gap from the Yarranabee report.**
+
+Open question for Cody: exact boundary behaviour at 3% and 10% (e.g. is exactly 3.0% green or amber; is exactly 10.0% amber or red) — assume inclusive-lower-bound (≥3% and <10% = amber, ≥10% = red, <3% = green) until confirmed otherwise.
+
+## Rule: Flags-table narrative paragraph (template + per-category cause bank)
+
+The paragraph following the "What Our X-Ray Found" table (e.g. "Stone and dirt are the largest factors this season...") follows a repeatable template, populated per-report based on whichever category(ies) actually rank at the top by flag count:
+
+**Template shape:** `[Top category/categories] are the largest factor(s) this season. [Cause explanation for the top category, from the bank below].`
+
+**Cause-explanation bank per category** (insert whichever corresponds to the top-ranked category; if two categories are close/tied at the top, both may be named and the explanation adapted to cover both, as in the Yarranabee example which named Stone and Dirt together):
+
+| Category | Standard cause-explanation sentence |
+|---|---|
+| Stone | "That usually points to ground and soil picked up during cutting, raking or baling, rather than anything wrong with the hay." |
+| Dirt | Shares the Stone explanation (same ground/soil-pickup cause) — used together when Stone and Dirt are both top contributors, as in Yarranabee's report. |
+| Moisture | "Ensure correct humidity levels are monitored during baling and hay is properly cured." |
+| Wire | "Please drive removed fence lines and please notify us if you remove or repair big area of fencing so Johnson's can also inspect." |
+| Others | **Open item — no standard sentence defined yet. Confirm with Cody if "Others" becomes a top contributor.** |
+
+This is manually-authored per report (like the Notes column) — not something Power BI can fully automate. IT should build this as a templated text block with a category → cause-sentence lookup, surfaced for the report preparer to select/edit before send, not a locked auto-generated paragraph.
+

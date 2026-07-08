@@ -10,7 +10,8 @@ Reference: `reference/Yarranabee_Reject_Report.docx` (shipped output), `referenc
 | Navy | `#1A2E4C` | PANTONE 295 | C95 M81 Y43 K40 | R26 G46 B76 | Brand guide, p.10 (Primary) | Table header row fill, section heading text, banner background, bale-example header bar |
 | Dark Grey | `#626D7C` | — | C65 M50 Y40 K12 | R98 G109 B124 | Brand guide, p.10 (Secondary) | Subtitle line under report title, image captions/attributions |
 | Light Grey | `#C4C8CC` | — | C23 M16 Y15 K0 | R196 G200 B204 | Brand guide, p.10 (Secondary) | Not currently used in this report — available for future use |
-| Reject Red | `#C0392B` | — | — | — | **Not in brand guide** — used consistently in shipped report | "REJECTED" status tags, red paddock/bale reject-rate figures |
+| Reject Red | `#C0392B` | — | — | — | **Not in brand guide** — used consistently in shipped report | "REJECTED" status tags, reject-rate figures ≥10% (see Business Rules: Reject-rate colour thresholds) |
+| Amber (new) | `#F39C12` | — | — | — | **Not in brand guide, not in shipped report** — agreed with Cody 2026-07-08 to fill a gap: the intended 3-tier reject-rate threshold rule was never actually implemented with a 3rd colour | Reject-rate figures 3%–10% (see Business Rules) |
 | Pale Green tint | `#E8F4EE` | — | — | — | **Not in brand guide** — appears to be a ~12% tint of Johnson's Green over white | Glance-row stat tile backgrounds, status-tag caption backgrounds |
 | Row stripe grey | `#F7F9FA` | — | — | — | Not in brand guide | Alternating table row shading (even rows) |
 | Border grey | `#D9DDE2` | — | — | — | Not in brand guide | Thin table cell borders |
