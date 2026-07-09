@@ -20,7 +20,7 @@ The season-on-season comparison sentence (see Business Rules for when this secti
 > "Your reject rate increased from [old]% to [new]%, a [diff] percentage point rise year on year. Seasons vary for all sorts of reasons, and we're happy to help work through what changed if that would be useful."
 - Factual and neutral. **No exclamation mark.** State the numbers plainly, don't editorialise or apologise on the grower's behalf.
 - Pairs with a **supportive, forward-looking line** rather than anything that reads as blame — mirrors the standard "What This Means for You" closing ("We are happy to talk it through if it helps.")
-- Confirmed with Cody (2026-07-08): this is the general direction. **Draft wording above is pending Cody's final approval** before IT builds it as a template.
+- Confirmed with Cody (2026-07-08): this is the general direction, and **the wording above is approved as final** — ready for IT to template.
 
 ## General writing style guidelines (observed patterns across the shipped report)
 

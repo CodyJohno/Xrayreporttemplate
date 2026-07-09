@@ -34,12 +34,12 @@ Treat the docx as authoritative wherever the two disagree.
 3. **"Exported To" source system** — PULSE or Power BI, IT to investigate; also confirm the one-destination-per-paddock-per-season assumption holds beyond Yarranabee. (Business Rules — Exported To)
 4. **Sign-off contact source field** — grower → account manager/contact mapping, likely PULSE, not yet located. (Business Rules — Sign-off contact name)
 
-### Copy drafted, pending Cody's final approval (ready for a quick review pass, not a from-scratch writing task)
+### Approved copy, ready for IT to template as-is
 
-5. **Paddock-intro-line wording** for the "all clean" and "all poor" variants — drafted, needs Cody's sign-off. (Business Rules — Paddock table intro line)
-6. **Season-on-season "got worse" sentence** — drafted, needs Cody's sign-off. (Content Standards)
-7. **"Others" category** cause-explanation sentence and bale-caption template — drafted (with a bracketed slot for the specific item found, since "Others" isn't one fixed physical cause). Needs Cody's sign-off, only relevant once "Others" ever ranks as a top contributor or gets featured as a bale example. (Business Rules — flags narrative bank; bale caption bank)
-8. **Dirt bale-caption template** — drafted, needs Cody's sign-off **and** a real Dirt-flagged scan image to confirm the marker colour described in the caption (no shipped example to check against). (Business Rules — Bale example captions)
+5. **Paddock-intro-line wording** for the "all clean" and "all poor" variants — approved. (Business Rules — Paddock table intro line)
+6. **Season-on-season "got worse" sentence** — approved. (Content Standards)
+7. **"Others" category** cause-explanation sentence and bale-caption template — approved (with a bracketed slot for the specific item found, since "Others" isn't one fixed physical cause; only relevant once "Others" ever ranks as a top contributor or gets featured as a bale example). (Business Rules — flags narrative bank; bale caption bank)
+8. **Dirt bale-caption template** — approved, but the "[colour]" placeholder in it still needs checking against a real Dirt-flagged scan image before IT finalises the template (no shipped example to check against yet). (Business Rules — Bale example captions)
 
 ### Scope item, not a sign-off item
 
@@ -49,6 +49,7 @@ Treat the docx as authoritative wherever the two disagree.
 
 - Reject-rate colour threshold boundaries: exactly 3.0% = green, exactly 10.0% = amber. (Business Rules — Reject-rate colour thresholds)
 - Bale image sizing: keep native aspect ratio, fixed width only. (Design Specifications)
+- All 5 previously-missing copy variants drafted and approved by Cody (2026-07-08): paddock intro all-green/all-red, season-on-season "got worse," Dirt and Others bale captions/cause sentences. Only the Dirt caption's colour placeholder needs a real image to verify.
 
 ## Resolved decisions from this session (for reference — don't re-litigate)
 

@@ -59,9 +59,9 @@ The sentence introducing the paddock comparison table (Yarranabee's version: "Yo
 | All paddocks in the red band | "Needs improvement" tone — flags a consistent problem across the whole property, not just one paddock |
 | Mixed bands (some green/amber/red) | Neutral "did not all behave the same way" framing — as shipped in Yarranabee's report |
 
-Confirmed by Cody (2026-07-08): this 3-way split is correct. Draft wording for the two missing variants (**pending Cody's final approval**):
+Confirmed by Cody (2026-07-08): this 3-way split is correct. Wording for all three variants **approved by Cody (2026-07-08)** — final, ready for IT to template:
 
-| Variant | Draft wording |
+| Variant | Wording |
 |---|---|
 | All-green | "Every one of your scanned paddocks came through clean this season — a strong, consistent result across the board." |
 | All-red | "All of your scanned paddocks are showing higher reject rates than we'd like to see this season, so there's an opportunity to lift results across the board — we've broken it down by paddock below." |
@@ -97,8 +97,8 @@ Follows a **template per category**, with minor tweaks to match specifics of the
 | Stone (rejected) | "This bale was rejected for stone contamination. The dark blue marks scattered through the bale are stones picked up with the hay during baling. The green boxes show what our X-ray flagged automatically." |
 | Clean | "This is what a clean bale looks like through the X-ray. No contaminants flagged, no manual marks from the operator. The bale goes straight through to the press and into export packaging. The colour variation across the image is just density variation, not contamination. This is what we are aiming for on every bale." |
 | Wire (rejected) | "This bale was rejected for wire in the top half, marked in the image. Wire is one of the most serious contaminants we catch because of the injury risk it carries for livestock, so any detection is an automatic reject regardless of how clean the rest of the bale looks." |
-| Dirt (rejected) | **Draft (pending Cody's approval, and pending a real Dirt-flagged scan image to confirm the marker colour/description):** "This bale was rejected for dirt contamination. The [colour] marks through the bale show soil or dirt picked up with the hay during baling. The green boxes show what our X-ray flagged automatically." |
-| Others (rejected) | **Draft (pending Cody's approval):** "This bale was rejected for [specific item found]. Items like this are uncommon, and flagging them individually helps us keep unusual contamination out of your shipments." |
+| Dirt (rejected) | **Approved by Cody (2026-07-08), wording still pending a real Dirt-flagged scan image to confirm the marker colour placeholder:** "This bale was rejected for dirt contamination. The [colour] marks through the bale show dirt picked up with the hay during baling. The green boxes show what our X-ray flagged automatically." |
+| Others (rejected) | **Approved by Cody (2026-07-08):** "This bale was rejected for [specific item found]. Items like this are uncommon, and flagging them individually helps us keep unusual contamination out of your shipments." |
 
 **Implication for IT:** build as a category → template caption lookup (like the flags-table cause bank), editable per report to match the "minor tweaks for the image" pattern — not a fully static hardcoded string, but not free-text-from-scratch either.
 
@@ -128,7 +128,7 @@ The paragraph following the "What Our X-Ray Found" table (e.g. "Stone and dirt a
 | Dirt | Shares the Stone explanation (same ground/soil-pickup cause) — used together when Stone and Dirt are both top contributors, as in Yarranabee's report. |
 | Moisture | "Ensure correct humidity levels are monitored during baling and hay is properly cured." |
 | Wire | "Please drive removed fence lines and please notify us if you remove or repair big area of fencing so Johnson's can also inspect." |
-| Others | **Draft (pending Cody's approval):** "The 'Others' category can include a range of one-off items — [specific item found, e.g. a foreign object or piece of equipment]. These are usually isolated incidents rather than a pattern, and we flag them individually so you have full visibility." — this one will always need the bracketed detail filled in manually per instance, since "Others" isn't a single physical cause the way Stone/Dirt/Moisture/Wire are. |
+| Others | **Approved by Cody (2026-07-08):** "The 'Others' category can include a range of one-off items — [specific item found, e.g. a foreign object or piece of equipment]. These are usually isolated incidents rather than a pattern, and we flag them individually so you have full visibility." — this one will always need the bracketed detail filled in manually per instance, since "Others" isn't a single physical cause the way Stone/Dirt/Moisture/Wire are. |
 
 This is manually-authored per report (like the Notes column) — not something Power BI can fully automate. IT should build this as a templated text block with a category → cause-sentence lookup, surfaced for the report preparer to select/edit before send, not a locked auto-generated paragraph.
 
