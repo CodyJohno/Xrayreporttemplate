@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Client Coaching Questionnaire</title>
+<meta name="description" content="Onboarding questionnaire so your training and nutrition program can be built around your goals, schedule and history.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💪</text></svg>">
+<style>
+  :root{
+    --bg:#0f1115;
+    --panel:#171a21;
+    --panel-2:#1e222b;
+    --line:#2b303b;
+    --text:#e9ecf1;
+    --muted:#9aa3b2;
+    --accent:#ff5c33;
+    --accent-soft:rgba(255,92,51,.14);
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    padding:0 0 64px;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px}
+
+  header.hero{
+    background:linear-gradient(160deg,#1c2029 0%,#12151b 100%);
+    border-bottom:1px solid var(--line);
+    padding:44px 0 36px;
+    margin-bottom:28px;
+  }
+  .eyebrow{
+    display:inline-block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);font-weight:700;margin:0 0 10px;
+  }
+  h1{margin:0 0 12px;font-size:clamp(26px,5vw,38px);line-height:1.15;letter-spacing:-.02em}
+  .lede{margin:0;color:var(--muted);max-width:56ch}
+
+  fieldset{
+    border:1px solid var(--line);
+    background:var(--panel);
+    border-radius:var(--radius);
+    padding:22px 20px 24px;
+    margin:0 0 20px;
+  }
+  legend{
+    padding:4px 12px;
+    background:var(--accent-soft);
+    border:1px solid rgba(255,92,51,.35);
+    color:#ffb9a6;
+    border-radius:999px;
+    font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  }
+  .section-note{margin:8px 0 20px;color:var(--muted);font-size:14px}
+
+  .field{margin:0 0 18px}
+  .field:last-child{margin-bottom:0}
+  label.q,.q{display:block;font-weight:600;margin:0 0 8px}
+  .hint{display:block;font-weight:400;color:var(--muted);font-size:13px;margin-top:3px}
+  .req{color:var(--accent);font-weight:700}
+
+  input[type=text],input[type=email],input[type=tel],input[type=number],input[type=date],textarea,select{
+    width:100%;
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    color:var(--text);
+    border-radius:10px;
+    padding:12px 13px;
+    font:inherit;
+    transition:border-color .15s,box-shadow .15s;
+  }
+  textarea{min-height:92px;resize:vertical}
+  input:focus,textarea:focus,select:focus{
+    outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);
+  }
+  input::placeholder,textarea::placeholder{color:#6c7484}
+
+  .grid{display:grid;gap:16px;margin:0 0 18px}
+  .grid:last-child{margin-bottom:0}
+  /* keep inputs on the same row baseline-aligned even when one label wraps or has a hint */
+  .grid .field{display:flex;flex-direction:column;margin-bottom:0}
+  .grid .field > label.q{flex:1 0 auto}
+  @media(min-width:620px){
+    .grid.two{grid-template-columns:1fr 1fr}
+    .grid.three{grid-template-columns:repeat(3,1fr)}
+  }
+
+  /* selectable option tiles */
+  .options{display:grid;gap:10px}
+  @media(min-width:520px){
+    .options.cols2{grid-template-columns:1fr 1fr}
+    .options.cols3{grid-template-columns:repeat(3,1fr)}
+  }
+  .opt{
+    position:relative;display:flex;align-items:center;gap:11px;
+    background:var(--panel-2);border:1px solid var(--line);border-radius:11px;
+    padding:12px 14px;cursor:pointer;user-select:none;
+    transition:border-color .15s,background .15s;
+  }
+  .opt:hover{border-color:#3c4354}
+  .opt input{
+    appearance:none;-webkit-appearance:none;margin:0;flex:0 0 auto;
+    width:20px;height:20px;border:2px solid #5a6274;background:transparent;
+    display:grid;place-content:center;cursor:pointer;transition:border-color .15s,background .15s;
+  }
+  .opt input[type=radio]{border-radius:50%}
+  .opt input[type=checkbox]{border-radius:6px}
+  .opt input::after{content:"";width:10px;height:10px;transform:scale(0);transition:transform .12s ease-out;background:#fff}
+  .opt input[type=radio]::after{border-radius:50%}
+  .opt input[type=checkbox]::after{
+    width:11px;height:11px;
+    clip-path:polygon(14% 47%,0 61%,40% 100%,100% 22%,85% 9%,38% 71%);
+  }
+  .opt input:checked{background:var(--accent);border-color:var(--accent)}
+  .opt input:checked::after{transform:scale(1)}
+  .opt input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .opt:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+  .opt span{font-size:15px}
+
+  .other-row{display:flex;align-items:center;gap:10px;margin-top:10px}
+  .other-row label{color:var(--muted);font-size:14px;white-space:nowrap}
+
+  /* 1-10 scales */
+  .scale{background:var(--panel-2);border:1px solid var(--line);border-radius:11px;padding:14px 16px 10px}
+  .scale-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:6px}
+  .scale-val{
+    font-weight:700;font-size:15px;color:#fff;background:var(--accent);
+    border-radius:8px;padding:2px 12px;min-width:44px;text-align:center;
+  }
+  input[type=range]{
+    width:100%;appearance:none;-webkit-appearance:none;background:transparent;margin:6px 0 2px;
+  }
+  input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:99px;background:#333947}
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--accent);
+    border:3px solid #fff;margin-top:-8px;cursor:pointer;
+  }
+  input[type=range]::-moz-range-track{height:6px;border-radius:99px;background:#333947}
+  input[type=range]::-moz-range-thumb{
+    width:18px;height:18px;border-radius:50%;background:var(--accent);border:3px solid #fff;cursor:pointer;
+  }
+  .scale-ends{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}
+
+  .actions{margin-top:26px;text-align:center}
+  button[type=submit]{
+    width:100%;max-width:340px;
+    background:var(--accent);color:#fff;border:none;border-radius:12px;
+    padding:16px 24px;font:700 17px/1 inherit;letter-spacing:.01em;cursor:pointer;
+    transition:filter .15s,transform .05s;
+  }
+  button[type=submit]:hover{filter:brightness(1.08)}
+  button[type=submit]:active{transform:translateY(1px)}
+  .privacy{margin:14px auto 0;color:var(--muted);font-size:13px;max-width:52ch}
+
+  .hp{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden}
+
+  @media (prefers-color-scheme: light){
+    :root{
+      --bg:#f5f6f8;--panel:#fff;--panel-2:#fafbfc;--line:#e0e3e9;
+      --text:#171a1f;--muted:#606a7b;--accent:#e2431c;--accent-soft:rgba(226,67,28,.09);
+    }
+    header.hero{background:linear-gradient(160deg,#fff 0%,#eef0f4 100%)}
+    legend{color:#a5310f}
+    .opt input{border-color:#a6adbb}
+    input[type=range]::-webkit-slider-runnable-track{background:#d8dce3}
+    input[type=range]::-moz-range-track{background:#d8dce3}
+    input::placeholder,textarea::placeholder{color:#9aa3b2}
+    .opt:hover{border-color:#bcc3cf}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Coaching Onboarding</p>
+    <h1>Client Coaching Questionnaire</h1>
+    <p class="lede">Take 10 minutes and answer as honestly as you can — the more detail you give me, the more your training and nutrition plan can be built around your goals, your schedule and your history. Everything here stays between us.</p>
+  </div>
+</header>
+
+<div class="wrap">
+<form name="client-coaching-questionnaire"
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      action="/thanks.html">
+
+  <input type="hidden" name="form-name" value="client-coaching-questionnaire">
+  <p class="hp"><label>Leave this field empty: <input name="bot-field"></label></p>
+
+  <!-- 1. PERSONAL DETAILS -->
+  <fieldset>
+    <legend>1 &middot; Personal Details</legend>
+    <div class="grid two">
+      <div class="field">
+        <label class="q" for="full-name">Full name <span class="req">*</span></label>
+        <input type="text" id="full-name" name="Full Name" autocomplete="name" required>
+      </div>
+      <div class="field">
+        <label class="q" for="email">Email <span class="req">*</span></label>
+        <input type="email" id="email" name="Email" autocomplete="email" required>
+      </div>
+      <div class="field">
+        <label class="q" for="mobile">Mobile number <span class="req">*</span></label>
+        <input type="tel" id="mobile" name="Mobile Number" autocomplete="tel" inputmode="tel" required>
+      </div>
+      <div class="field">
+        <label class="q" for="date-completed">Date completed <span class="req">*</span></label>
+        <input type="date" id="date-completed" name="Date Completed" required>
+      </div>
+    </div>
+  </fieldset>
+
+  <!-- 2. BASIC INFORMATION -->
+  <fieldset>
+    <legend>2 &middot; Basic Information</legend>
+    <div class="grid two">
+      <div class="field">
+        <label class="q" for="age">Age</label>
+        <input type="number" id="age" name="Age" min="12" max="100" inputmode="numeric">
+      </div>
+      <div class="field">
+        <label class="q" for="dob">Date of birth</label>
+        <input type="date" id="dob" name="Date of Birth">
+      </div>
+    </div>
+
+    <div class="field">
+      <p class="q">Sex</p>
+      <div class="options cols3">
+        <label class="opt"><input type="radio" name="Sex" value="Male"><span>Male</span></label>
+        <label class="opt"><input type="radio" name="Sex" value="Female"><span>Female</span></label>
+      </div>
+    </div>
+
+    <div class="grid two">
+      <div class="field">
+        <label class="q" for="height">Height (cm)</label>
+        <input type="number" id="height" name="Height (cm)" min="100" max="230" step="0.5" inputmode="decimal">
+      </div>
+      <div class="field">
+        <label class="q" for="weight">Current weight (kg)</label>
+        <input type="number" id="weight" name="Current Weight (kg)" min="30" max="300" step="0.1" inputmode="decimal">
+      </div>
+      <div class="field">
+        <label class="q" for="goal-weight">Goal weight (kg)</label>
+        <input type="number" id="goal-weight" name="Goal Weight (kg)" min="30" max="300" step="0.1" inputmode="decimal">
+      </div>
+      <div class="field">
+        <label class="q" for="bodyfat">Estimated body fat %
+          <span class="hint">Only if you know it — a rough guess is fine.</span>
+        </label>
+        <input type="number" id="bodyfat" name="Estimated Body Fat %" min="3" max="70" step="0.5" inputmode="decimal">
+      </div>
+    </div>
+  </fieldset>
+
+  <!-- 3. PRIMARY GOAL -->
+  <fieldset>
+    <legend>3 &middot; Primary Goal</legend>
+    <div class="field">
+      <p class="q">What are your main goals? <span class="hint">Tick all that apply.</span></p>
+      <div class="options cols2">
+        <label class="opt"><input type="checkbox" name="Primary Goal" value="Lose Fat"><span>Lose fat</span></label>
+        <label class="opt"><input type="checkbox" name="Primary Goal" value="Build Muscle"><span>Build muscle</span></label>
+        <label class="opt"><input type="checkbox" name="Primary Goal" value="Body Recomposition"><span>Body recomposition</span></label>
+        <label class="opt"><input type="checkbox" name="Primary Goal" value="Increase Strength"><span>Increase strength</span></label>
+        <label class="opt"><input type="checkbox" name="Primary Goal" value="Improve Fitness"><span>Improve fitness</span></label>
+        <label class="opt"><input type="checkbox" name="Primary Goal" value="Sports Performance"><span>Sports performance</span></label>
+        <label class="opt"><input type="checkbox" name="Primary Goal" value="General Health"><span>General health</span></label>
+        <label class="opt"><input type="checkbox" name="Primary Goal" value="Other"><span>Other</span></label>
+      </div>
+      <div class="other-row">
+        <label for="goal-other">If other:</label>
+        <input type="text" id="goal-other" name="Primary Goal - Other" placeholder="Tell me more">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="q" for="success-12wk">What would success look like in 12 weeks?</label>
+      <textarea id="success-12wk" name="12 Week Success" placeholder="e.g. down 6 kg, jeans fitting again, squatting 100 kg, training 4x a week without missing"></textarea>
+    </div>
+
+    <div class="field">
+      <label class="q" for="long-term">Long-term goal (6–12 months)?</label>
+      <textarea id="long-term" name="Long Term Goal (6-12 months)"></textarea>
+    </div>
+  </fieldset>
+
+  <!-- 4. LIFESTYLE -->
+  <fieldset>
+    <legend>4 &middot; Lifestyle</legend>
+
+    <div class="field">
+      <p class="q">Occupation</p>
+      <div class="options cols3">
+        <label class="opt"><input type="radio" name="Occupation" value="Office"><span>Office</span></label>
+        <label class="opt"><input type="radio" name="Occupation" value="Trades"><span>Trades</span></label>
+        <label class="opt"><input type="radio" name="Occupation" value="Retail"><span>Retail</span></label>
+        <label class="opt"><input type="radio" name="Occupation" value="Healthcare"><span>Healthcare</span></label>
+        <label class="opt"><input type="radio" name="Occupation" value="Hospitality"><span>Hospitality</span></label>
+        <label class="opt"><input type="radio" name="Occupation" value="Other"><span>Other</span></label>
+      </div>
+      <div class="other-row">
+        <label for="occupation-other">If other:</label>
+        <input type="text" id="occupation-other" name="Occupation - Other" placeholder="Your job title">
+      </div>
+    </div>
+
+    <div class="field">
+      <p class="q">How physically active is your job?</p>
+      <div class="options cols2">
+        <label class="opt"><input type="radio" name="Job Activity Level" value="Mostly sitting"><span>Mostly sitting</span></label>
+        <label class="opt"><input type="radio" name="Job Activity Level" value="Mixed"><span>Mixed</span></label>
+        <label class="opt"><input type="radio" name="Job Activity Level" value="Mostly active"><span>Mostly active</span></label>
+        <label class="opt"><input type="radio" name="Job Activity Level" value="Heavy manual labour"><span>Heavy manual labour</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <p class="q">Average daily steps</p>
+      <div class="options cols3">
+        <label class="opt"><input type="radio" name="Average Daily Steps" value="Under 5,000"><span>Under 5,000</span></label>
+        <label class="opt"><input type="radio" name="Average Daily Steps" value="5,000-8,000"><span>5,000–8,000</span></label>
+        <label class="opt"><input type="radio" name="Average Daily Steps" value="8,000-10,000"><span>8,000–10,000</span></label>
+        <label class="opt"><input type="radio" name="Average Daily Steps" value="10,000-12,000"><span>10,000–12,000</span></label>
+        <label class="opt"><input type="radio" name="Average Daily Steps" value="12,000+"><span>12,000+</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="q" for="sleep-hours">Sleep — average hours per night</label>
+      <input type="number" id="sleep-hours" name="Average Sleep (hours per night)" min="0" max="14" step="0.5" inputmode="decimal">
+    </div>
+
+    <div class="field">
+      <p class="q">Sleep quality</p>
+      <div class="scale">
+        <div class="scale-top">
+          <span>How well do you sleep?</span>
+          <span class="scale-val" data-out="sleep-quality">5</span>
+        </div>
+        <input type="range" id="sleep-quality" name="Sleep Quality (1-10)" min="1" max="10" step="1" value="5">
+        <div class="scale-ends"><span>1 — terrible</span><span>10 — excellent</span></div>
+      </div>
+    </div>
+
+    <div class="field">
+      <p class="q">Stress</p>
+      <div class="scale">
+        <div class="scale-top">
+          <span>Rate your average stress</span>
+          <span class="scale-val" data-out="stress-level">5</span>
+        </div>
+        <input type="range" id="stress-level" name="Average Stress (1-10)" min="1" max="10" step="1" value="5">
+        <div class="scale-ends"><span>1 — very low</span><span>10 — very high</span></div>
+      </div>
+    </div>
+  </fieldset>
+
+  <!-- 5. TRAINING HISTORY -->
+  <fieldset>
+    <legend>5 &middot; Training History</legend>
+
+    <div class="field">
+      <p class="q">How long have you been training?</p>
+      <div class="options cols3">
+        <label class="opt"><input type="radio" name="Training Experience" value="Never"><span>Never</span></label>
+        <label class="opt"><input type="radio" name="Training Experience" value="Under 6 months"><span>Under 6 months</span></label>
+        <label class="opt"><input type="radio" name="Training Experience" value="6-12 months"><span>6–12 months</span></label>
+        <label class="opt"><input type="radio" name="Training Experience" value="1-3 years"><span>1–3 years</span></label>
+        <label class="opt"><input type="radio" name="Training Experience" value="3+ years"><span>3+ years</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <p class="q">How many days per week can you realistically train?</p>
+      <div class="options cols3">
+        <label class="opt"><input type="radio" name="Training Days Per Week" value="3"><span>3 days</span></label>
+        <label class="opt"><input type="radio" name="Training Days Per Week" value="4"><span>4 days</span></label>
+        <label class="opt"><input type="radio" name="Training Days Per Week" value="5"><span>5 days</span></label>
+        <label class="opt"><input type="radio" name="Training Days Per Week" value="6"><span>6 days</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <p class="q">Preferred training days <span class="hint">Tick all that suit you.</span></p>
+      <div class="options cols3">
+        <label class="opt"><input type="checkbox" name="Preferred Training Days" value="Monday"><span>Monday</span></label>
+        <label class="opt"><input type="checkbox" name="Preferred Training Days" value="Tuesday"><span>Tuesday</span></label>
+        <label class="opt"><input type="checkbox" name="Preferred Training Days" value="Wednesday"><span>Wednesday</span></label>
+        <label class="opt"><input type="checkbox" name="Preferred Training Days" value="Thursday"><span>Thursday</span></label>
+        <label class="opt"><input type="checkbox" name="Preferred Training Days" value="Friday"><span>Friday</span></label>
+        <label class="opt"><input type="checkbox" name="Preferred Training Days" value="Saturday"><span>Saturday</span></label>
+        <label class="opt"><input type="checkbox" name="Preferred Training Days" value="Sunday"><span>Sunday</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <p class="q">Workout length</p>
+      <div class="options cols3">
+        <label class="opt"><input type="radio" name="Workout Length" value="30 min"><span>30 min</span></label>
+        <label class="opt"><input type="radio" name="Workout Length" value="45 min"><span>45 min</span></label>
+        <label class="opt"><input type="radio" name="Workout Length" value="60 min"><span>60 min</span></label>
+        <label class="opt"><input type="radio" name="Workout Length" value="75 min"><span>75 min</span></label>
+        <label class="opt"><input type="radio" name="Workout Length" value="90 min+"><span>90 min+</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <p class="q">Where do you train?</p>
+      <div class="options cols3">
+        <label class="opt"><input type="radio" name="Training Location" value="Commercial gym"><span>Commercial gym</span></label>
+        <label class="opt"><input type="radio" name="Training Location" value="Home gym"><span>Home gym</span></label>
+        <label class="opt"><input type="radio" name="Training Location" value="Both"><span>Both</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <p class="q">Do you currently do cardio? <span class="hint">Tick all that apply.</span></p>
+      <div class="options cols3">
+        <label class="opt"><input type="checkbox" name="Current Cardio" value="No"><span>No</span></label>
+        <label class="opt"><input type="checkbox" name="Current Cardio" value="Walking"><span>Walking</span></label>
+        <label class="opt"><input type="checkbox" name="Current Cardio" value="Running"><span>Running</span></label>
+        <label class="opt"><input type="checkbox" name="Current Cardio" value="Cycling"><span>Cycling</span></label>
+        <label class="opt"><input type="checkbox" name="Current Cardio" value="Sport"><span>Sport</span></label>
+        <label class="opt"><input type="checkbox" name="Current Cardio" value="Other"><span>Other</span></label>
+      </div>
+      <div class="other-row">
+        <label for="cardio-other">If other:</label>
+        <input type="text" id="cardio-other" name="Current Cardio - Other" placeholder="e.g. rowing, swimming, boxing">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="q" for="cardio-sessions">How many cardio sessions per week?</label>
+      <input type="number" id="cardio-sessions" name="Cardio Sessions Per Week" min="0" max="21" inputmode="numeric">
+    </div>
+  </fieldset>
+
+  <!-- 6. INJURIES & MEDICAL -->
+  <fieldset>
+    <legend>6 &middot; Injuries &amp; Medical</legend>
+    <p class="section-note">If the answer is none, just write “none” — it still helps me to know.</p>
+
+    <div class="field">
+      <label class="q" for="injuries">Do you have any injuries?</label>
+      <textarea id="injuries" name="Injuries" placeholder="Current or past — what, when, and how it affects you now"></textarea>
+    </div>
+    <div class="field">
+      <label class="q" for="pain">Any pain during exercise?</label>
+      <textarea id="pain" name="Pain During Exercise" placeholder="Which movements, and where you feel it"></textarea>
+    </div>
+    <div class="field">
+      <label class="q" for="surgeries">Any surgeries?</label>
+      <textarea id="surgeries" name="Surgeries" placeholder="What and roughly when"></textarea>
+    </div>
+    <div class="field">
+      <label class="q" for="conditions">Any medical conditions that affect training?</label>
+      <textarea id="conditions" name="Medical Conditions" placeholder="e.g. asthma, diabetes, blood pressure, thyroid"></textarea>
+    </div>
+    <div class="field">
+      <label class="q" for="medications">Taking any medications?</label>
+      <textarea id="medications" name="Medications"></textarea>
+    </div>
+  </fieldset>
+
+  <!-- 7. NUTRITION -->
+  <fieldset>
+    <legend>7 &middot; Nutrition</legend>
+
+    <div class="field">
+      <p class="q">Are you currently tracking calories?</p>
+      <div class="options cols2">
+        <label class="opt"><input type="radio" name="Tracking Calories" value="Yes"><span>Yes</span></label>
+        <label class="opt"><input type="radio" name="Tracking Calories" value="No"><span>No</span></label>
+      </div>
+    </div>
+
+    <div class="grid two">
+      <div class="field">
+        <label class="q" for="calories">If yes, roughly how many calories per day?</label>
+        <input type="number" id="calories" name="Current Daily Calories" min="500" max="8000" inputmode="numeric">
+      </div>
+      <div class="field">
+        <label class="q" for="protein">Current protein intake (g/day)
+          <span class="hint">If known.</span>
+        </label>
+        <input type="number" id="protein" name="Current Protein Intake (g)" min="0" max="500" inputmode="numeric">
+      </div>
+    </div>
+
+    <div class="field">
+      <p class="q">How many meals do you eat each day?</p>
+      <div class="options cols3">
+        <label class="opt"><input type="radio" name="Meals Per Day" value="2"><span>2</span></label>
+        <label class="opt"><input type="radio" name="Meals Per Day" value="3"><span>3</span></label>
+        <label class="opt"><input type="radio" name="Meals Per Day" value="4"><span>4</span></label>
+        <label class="opt"><input type="radio" name="Meals Per Day" value="5+"><span>5+</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="q" for="dislike-foods">Foods you dislike</label>
+      <textarea id="dislike-foods" name="Foods Disliked"></textarea>
+    </div>
+    <div class="field">
+      <label class="q" for="allergies">Food allergies / intolerances</label>
+      <textarea id="allergies" name="Food Allergies or Intolerances"></textarea>
+    </div>
+
+    <div class="field">
+      <p class="q">How often do you eat takeaway?</p>
+      <div class="options cols2">
+        <label class="opt"><input type="radio" name="Takeaway Frequency" value="Never"><span>Never</span></label>
+        <label class="opt"><input type="radio" name="Takeaway Frequency" value="1-2 meals/week"><span>1–2 meals/week</span></label>
+        <label class="opt"><input type="radio" name="Takeaway Frequency" value="3-5 meals/week"><span>3–5 meals/week</span></label>
+        <label class="opt"><input type="radio" name="Takeaway Frequency" value="Daily"><span>Daily</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <p class="q">Alcohol</p>
+      <div class="options cols2">
+        <label class="opt"><input type="radio" name="Alcohol" value="Never"><span>Never</span></label>
+        <label class="opt"><input type="radio" name="Alcohol" value="Occasionally"><span>Occasionally</span></label>
+        <label class="opt"><input type="radio" name="Alcohol" value="Weekly"><span>Weekly</span></label>
+        <label class="opt"><input type="radio" name="Alcohol" value="Multiple times/week"><span>Multiple times/week</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <p class="q">Water intake</p>
+      <div class="options cols2">
+        <label class="opt"><input type="radio" name="Water Intake" value="Under 1 L"><span>Under 1 L</span></label>
+        <label class="opt"><input type="radio" name="Water Intake" value="1-2 L"><span>1–2 L</span></label>
+        <label class="opt"><input type="radio" name="Water Intake" value="2-3 L"><span>2–3 L</span></label>
+        <label class="opt"><input type="radio" name="Water Intake" value="3+ L"><span>3+ L</span></label>
+      </div>
+    </div>
+  </fieldset>
+
+  <!-- 8. EXPERIENCE -->
+  <fieldset>
+    <legend>8 &middot; Experience</legend>
+    <div class="field">
+      <label class="q" for="enjoy">What exercises do you enjoy?</label>
+      <textarea id="enjoy" name="Exercises Enjoyed"></textarea>
+    </div>
+    <div class="field">
+      <label class="q" for="dislike-ex">Exercises you dislike?</label>
+      <textarea id="dislike-ex" name="Exercises Disliked"></textarea>
+    </div>
+    <div class="field">
+      <label class="q" for="cannot">Any exercises you cannot perform?</label>
+      <textarea id="cannot" name="Exercises Unable To Perform" placeholder="And why — injury, mobility, no equipment"></textarea>
+    </div>
+  </fieldset>
+
+  <!-- 9. COMMITMENT -->
+  <fieldset>
+    <legend>9 &middot; Commitment</legend>
+
+    <div class="field">
+      <p class="q">How committed are you?</p>
+      <div class="scale">
+        <div class="scale-top">
+          <span>1–10</span>
+          <span class="scale-val" data-out="commitment">7</span>
+        </div>
+        <input type="range" id="commitment" name="Commitment Level (1-10)" min="1" max="10" step="1" value="7">
+        <div class="scale-ends"><span>1 — not really</span><span>10 — all in</span></div>
+      </div>
+    </div>
+
+    <div class="field">
+      <p class="q">How confident are you that you can stick to it?</p>
+      <div class="scale">
+        <div class="scale-top">
+          <span>1–10</span>
+          <span class="scale-val" data-out="confidence">7</span>
+        </div>
+        <input type="range" id="confidence" name="Confidence Level (1-10)" min="1" max="10" step="1" value="7">
+        <div class="scale-ends"><span>1 — not confident</span><span>10 — very confident</span></div>
+      </div>
+    </div>
+
+    <div class="field">
+      <p class="q">Biggest obstacle?</p>
+      <div class="options cols3">
+        <label class="opt"><input type="radio" name="Biggest Obstacle" value="Time"><span>Time</span></label>
+        <label class="opt"><input type="radio" name="Biggest Obstacle" value="Motivation"><span>Motivation</span></label>
+        <label class="opt"><input type="radio" name="Biggest Obstacle" value="Family"><span>Family</span></label>
+        <label class="opt"><input type="radio" name="Biggest Obstacle" value="Work"><span>Work</span></label>
+        <label class="opt"><input type="radio" name="Biggest Obstacle" value="Travel"><span>Travel</span></label>
+        <label class="opt"><input type="radio" name="Biggest Obstacle" value="Nutrition"><span>Nutrition</span></label>
+        <label class="opt"><input type="radio" name="Biggest Obstacle" value="Consistency"><span>Consistency</span></label>
+        <label class="opt"><input type="radio" name="Biggest Obstacle" value="Other"><span>Other</span></label>
+      </div>
+      <div class="other-row">
+        <label for="obstacle-other">If other:</label>
+        <input type="text" id="obstacle-other" name="Biggest Obstacle - Other">
+      </div>
+    </div>
+  </fieldset>
+
+  <!-- 10. PROGRESS TRACKING -->
+  <fieldset>
+    <legend>10 &middot; Progress Tracking</legend>
+    <div class="field">
+      <p class="q">Would you be happy to send these weekly? <span class="hint">Tick all you're comfortable with.</span></p>
+      <div class="options cols2">
+        <label class="opt"><input type="checkbox" name="Weekly Check-in Items" value="Weight"><span>Weight</span></label>
+        <label class="opt"><input type="checkbox" name="Weekly Check-in Items" value="Progress Photos"><span>Progress photos</span></label>
+        <label class="opt"><input type="checkbox" name="Weekly Check-in Items" value="Measurements"><span>Measurements</span></label>
+        <label class="opt"><input type="checkbox" name="Weekly Check-in Items" value="Training Updates"><span>Training updates</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="q" for="anything-else">Anything else I should know?</label>
+      <textarea id="anything-else" name="Anything Else"></textarea>
+    </div>
+  </fieldset>
+
+  <div class="actions">
+    <button type="submit">Submit questionnaire</button>
+    <p class="privacy">Your answers come straight to your coach and are used only to build your program.</p>
+  </div>
+</form>
+</div>
+
+<script>
+  // Live value readout for the 1-10 sliders
+  document.querySelectorAll('input[type=range]').forEach(function (range) {
+    var out = document.querySelector('.scale-val[data-out="' + range.id + '"]');
+    if (!out) return;
+    var sync = function () { out.textContent = range.value; };
+    range.addEventListener('input', sync);
+    sync();
+  });
+
+  // Default "Date completed" to today
+  var today = new Date();
+  var iso = today.getFullYear() + '-' +
+            String(today.getMonth() + 1).padStart(2, '0') + '-' +
+            String(today.getDate()).padStart(2, '0');
+  var dateField = document.getElementById('date-completed');
+  if (dateField && !dateField.value) dateField.value = iso;
+
+  // Ticking an "Other" option focuses its text box; typing in the box ticks the option
+  [['goal-other','Primary Goal'],
+   ['occupation-other','Occupation'],
+   ['obstacle-other','Biggest Obstacle'],
+   ['cardio-other','Current Cardio']].forEach(function (pair) {
+    var box = document.getElementById(pair[0]);
+    var other = document.querySelector('[name="' + pair[1] + '"][value="Other"]');
+    if (!box || !other) return;
+    other.addEventListener('change', function () { if (other.checked) box.focus(); });
+    box.addEventListener('input', function () { if (box.value.trim()) other.checked = true; });
+  });
+
+  // "No cardio" is exclusive of the cardio types
+  var cardio = Array.prototype.slice.call(document.querySelectorAll('[name="Current Cardio"]'));
+  cardio.forEach(function (item) {
+    item.addEventListener('change', function () {
+      if (item.value === 'No' && item.checked) {
+        cardio.forEach(function (o) { if (o !== item) o.checked = false; });
+      } else if (item.checked) {
+        var no = cardio.find(function (o) { return o.value === 'No'; });
+        if (no) no.checked = false;
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
