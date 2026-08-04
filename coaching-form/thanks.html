@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thanks — Questionnaire Received</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💪</text></svg>">
+<style>
+  :root{
+    --bg:#0f1115;--panel:#171a21;--line:#2b303b;--text:#e9ecf1;
+    --muted:#9aa3b2;--accent:#ff5c33;--accent-soft:rgba(255,92,51,.14);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;
+    background:var(--bg);color:var(--text);
+    font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  .card{
+    max-width:520px;width:100%;text-align:center;
+    background:var(--panel);border:1px solid var(--line);border-radius:16px;
+    padding:44px 30px;
+  }
+  .tick{
+    width:64px;height:64px;margin:0 auto 20px;border-radius:50%;
+    background:var(--accent-soft);border:2px solid var(--accent);
+    display:grid;place-items:center;font-size:30px;line-height:1;
+  }
+  h1{margin:0 0 12px;font-size:26px;letter-spacing:-.01em}
+  p{margin:0 0 14px;color:var(--muted)}
+  p:last-of-type{margin-bottom:0}
+  .next{
+    margin-top:24px;padding-top:20px;border-top:1px solid var(--line);
+    color:var(--muted);font-size:14px;
+  }
+  a{color:var(--accent)}
+  @media (prefers-color-scheme: light){
+    :root{--bg:#f5f6f8;--panel:#fff;--line:#e0e3e9;--text:#171a1f;--muted:#606a7b;
+          --accent:#e2431c;--accent-soft:rgba(226,67,28,.09)}
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="tick">✓</div>
+    <h1>Got it — thank you!</h1>
+    <p>Your questionnaire has been sent through and I've received your answers.</p>
+    <p>I'll go through everything and build your program around your goals, your schedule and your training history. I'll be in touch shortly on the email or mobile you gave me.</p>
+    <p class="next">Remembered something you left out? Just message me and I'll add it to your file.</p>
+  </div>
+</body>
+</html>
